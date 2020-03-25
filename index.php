@@ -70,7 +70,7 @@ class Personnage
   }
 }
 
-<?php
+
 $perso1 = new Personnage; // Un premier personnage
 $perso2 = new Personnage; // Un second personnage
 
