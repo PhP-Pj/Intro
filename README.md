@@ -1,5 +1,13 @@
 # Intro
 
+## Running PhP files
+PHP files first need be processed in a web server before sending their output to the web browser.
+
+### PhP installation for Ngnix 
+See https://tecadmin.net/install-nginx-php-fpm-ubuntu-18-04/ to find out how to configure PHP for nginx.
+
+## PHP
+
 ### Definition of a class
 
 ```
