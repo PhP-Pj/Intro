@@ -6,6 +6,12 @@ PHP files first need be processed in a web server before sending their output to
 ### PhP installation for Ngnix 
 See https://tecadmin.net/install-nginx-php-fpm-ubuntu-18-04/ to find out how to configure PHP for nginx.
 
+**Note:**
+sudo add-apt-repository ppa:ondrej/php would hang so I added the ppa entries manually to **/etc/apt/sources.list**.  
+Found the entries in https://launchpad.net/~ondrej/+archive/ubuntu/php in section Technical details about this PPA for my version of ubuntu.
+
+
+
 ## PHP
 
 ### Definition of a class
