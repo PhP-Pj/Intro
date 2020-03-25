@@ -184,3 +184,41 @@ $perso = new Personnage(Personnage::FORCE_MOYENNE);
 
 
 ```
+
+### Static Methods and Attribute
+
+They are declared with keyword static and accessible with **::**  
+
+```
+class Personnage
+{
+  private $_force;
+  private $_localisation;
+  private $_experience;
+  private $_degats;
+
+  const FORCE_PETITE = 20;
+  const FORCE_MOYENNE = 50;
+  const FORCE_GRANDE = 80;
+
+  public function __construct($forceInitiale)
+  {
+    $this->setForce($forceInitiale);
+  }
+...
+  public static function parler()
+  {
+    echo 'Je vais tous vous tuer !';
+  }
+}
+
+Personnage::parler();
+```
+
+It is also possible but not recommended to use **->**
+```
+$perso = new Personnage(Personnage::FORCE_GRANDE);
+$perso->parler();
+```
+
+
