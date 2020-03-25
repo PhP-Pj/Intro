@@ -1,6 +1,6 @@
 # Intro
 
-### Class
+### Definition of a class
 
 ```
 <?php
