@@ -49,3 +49,34 @@ $perso->parler();
 
 ### Setters and Getters
 
+*getter* form function atributeName()
+*setter* from function setAttributeName(val)
+
+```
+class Pesonnage {
+  private $_degats;
+  
+  public function degats()
+  {
+    return $this->_degats;
+  }
+  
+  public function setExperience($experience)
+  {
+    if (!is_int($experience)) // S'il ne s'agit pas d'un nombre entier.
+    {
+      trigger_error('L\'expérience d\'un personnage doit être un nombre entier', E_USER_WARNING);
+      return;
+    }
+    
+    if ($experience > 100) // On vérifie bien qu'on ne souhaite pas assigner une valeur supérieure à 100.
+    {
+      trigger_error('L\'expérience d\'un personnage ne peut dépasser 100', E_USER_WARNING);
+      return;
+    }
+    
+    $this->_experience = $experience;
+  }
+  
+}
+```
