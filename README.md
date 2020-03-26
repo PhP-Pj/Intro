@@ -150,6 +150,10 @@ It is possble to rgister sveral "autoload" functions.
 ### Constants
 
 Constants are declared with keyword **const** and accessible with **::** scope operator.
+Inside the class constant are access with **self::const_name**  
+
+**Note:**
+Constant names are **NOT** prfixed with **$**
 
 ```
 <?php
@@ -188,7 +192,9 @@ $perso = new Personnage(Personnage::FORCE_MOYENNE);
 ### Static Methods and Attribute
 
 They are declared with keyword static and accessible with **::**  
+Inside the class static are access with **self::static_name** 
 
+#### Methods
 ```
 class Personnage
 {
@@ -219,6 +225,53 @@ It is also possible but not recommended to use **->**
 ```
 $perso = new Personnage(Personnage::FORCE_GRANDE);
 $perso->parler();
+```
+#### Attributes
+Keyword static preceding the name of the variables with like all variables they are prefixed with $
+
+```
+class Personnage
+{
+  private $_force;
+  private $_localisation;
+  private $_experience;
+  private $_degats;
+  
+  private static $message = 'I am gonna kill you';
+  private static $counter = 0;
+
+  const FORCE_PETITE = 20;
+  const FORCE_MOYENNE = 50;
+  const FORCE_GRANDE = 80;
+
+  public function __construct($forceInitiale)
+  {
+    $this->setForce($forceInitiale);
+    self::incInstanceCounter();
+  }
+...
+  public static function parler()
+  {
+    echo self::$message;
+  }
+  
+  private static function incInstanceCounter() {
+    self::$counter +=1;
+  }
+  public function getNumberInstance() {
+    echo self::$counter;
+  }
+  public static function getNumberPersonnage() {
+    echo self::$counter;
+  }
+}
+
+Personnage::parler();
+Personnage::getNumberPersonnage(); // output 0
+$pers = new Pernonnage();
+Personnage::getNumberPersonnage(); // output 1
+$pers->getNumberInstance(); // output 1
+
 ```
 
 
