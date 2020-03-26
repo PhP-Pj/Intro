@@ -6,7 +6,7 @@ class Personnage
   private $_experience;
   private $_degats;
   
-  private static $message = 'I am gonna kill you\n';
+  private static $message = 'I am gonna kill you<br/>';
   private static $counter = 0;
 
   const FORCE_PETITE = 20;
@@ -28,10 +28,10 @@ class Personnage
     self::$counter +=1;
   }
   public function getNumberInstance() {
-    echo 'getNumberInstance: ' + self::$counter +'\n';
+    echo 'getNumberInstance: ' , self::$counter ,'<br/>';
   }
   public static function getNumberPersonnage() {
-    echo 'getNumberPersonnage: ' + self::$counter +'\n';
+    echo 'getNumberPersonnage: ' , self::$counter ,'<br/>';
   }
 }
 
