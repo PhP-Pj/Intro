@@ -19,6 +19,15 @@ class Personnage
     self::incInstanceCounter();
   }
 
+  public function setForce($force)
+  {
+    // On vérifie qu'on nous donne bien soit une « FORCE_PETITE », soit une « FORCE_MOYENNE », soit une « FORCE_GRANDE ».
+    if (in_array($force, [self::FORCE_PETITE, self::FORCE_MOYENNE, self::FORCE_GRANDE]))
+    {
+      $this->_force = $force;
+    }
+  }
+  
   public static function parler()
   {
     echo self::$message;
