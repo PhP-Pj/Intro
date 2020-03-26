@@ -37,6 +37,6 @@ class Personnage
 
 Personnage::parler();
 Personnage::getNumberPersonnage(); // output 0
-$pers = new Personnage();
+$pers = new Personnage(Personnage::FORCE_PETITE);
 Personnage::getNumberPersonnage(); // output 1
 $pers->getNumberInstance(); // output 1
