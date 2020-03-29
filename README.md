@@ -2,6 +2,8 @@
 
 ## Running PhP files
 PHP files first need be processed in a web server before sending their output to the web browser.
+### Logging
+sudo tail /var/log/nginx/error.log -n 200
 
 ### PhP installation for Ngnix 
 See https://tecadmin.net/install-nginx-php-fpm-ubuntu-18-04/ to find out how to configure PHP for nginx.
