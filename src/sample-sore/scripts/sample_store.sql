@@ -1,5 +1,7 @@
 
 -- as user
+-- mysql -h localhost -u sample_user --password=PASSWORD sample_store
+
 USE sample_store;
 CREATE TABLE products (product_id BIGINT PRIMARY KEY AUTO_INCREMENT, product_name VARCHAR(50), price DOUBLE) ENGINE = InnoDB;
 INSERT INTO products(product_name, price) VALUES ('WINTER COAT','25.50');

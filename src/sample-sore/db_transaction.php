@@ -17,7 +17,11 @@ class DBTransaction
         define('DB_PASSWORD', 'PASSWORD');
         define('DB_HOST', 'localhost');
 
-        $this->pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
+        $this->pdo = new PDO(
+            "mysql:host=" . DB_HOST . 
+            ";dbname=" . DB_NAME, 
+            DB_USER, DB_PASSWORD
+        );
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     }
@@ -27,19 +31,20 @@ class DBTransaction
         $this->pdo->beginTransaction();
     }
 
-    public function insertTransaction($sql, $data)
+    public function insertQuery($sql, $data)
     {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($data);
         $this->last_insert_id = $this->pdo->lastInsertId();
     }
 
-    public function submitTransaction()
+    public function submit()
     {
         try {
             $this->pdo->commit();
         } catch(PDOException $e) {
             $this->pdo->rollBack();
+            echo $e;
             return false;
         }
 
