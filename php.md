@@ -1,4 +1,4 @@
-# PHP
+# PHP in OOP
 
 ## Executing PHP
 
@@ -19,6 +19,7 @@ http://introphp/src/mooc/index.php
 
 ```
 php index.php
+php7.3 index.php
 ```
 
 See https://www.php.net/manual/en/features.commandline.usage.php
@@ -141,7 +142,10 @@ $objet = new MaClasse; // Puis, seulement après, je me sers de ma classe.
 
 ### Auto Imports
 It is possible to register a function to auto import **classes**. This function will be in charge of scouring all the files looking for the particuliar class we intend to use.  
-We can register the function with statement **spl_autoload_register**
+We can register the function with statement **spl_autoload_register**  
+
+See https://www.php.net/manual/en/language.oop5.autoload.php
+
 ```
 <?php
 function chargerClasse($classe)
@@ -154,17 +158,32 @@ spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload
 $perso = new Personnage;
 ```
 **Note:**  
-It is possble to rgister sveral "autoload" functions.
+It is possble to register sveral "autoload" functions.
+
+### Namespaces
+
+https://www.php.net/manual/en/language.namespaces.importing.php  
+
+https://stackoverflow.com/questions/10965454/how-does-the-keyword-use-work-in-php-and-can-i-import-classes-with-it  
 
 
 ### Constants
 
-Constants are declared with keyword **const** and accessible with **::** scope operator.
+Constants are declared with keyword **const** or statement **define()**
+Constants declared with keyword **const** are accessible with **::** scope operator.
 Inside the class constant are access with **self::const_name**  
 
 **Note:**
 Constant names are **NOT** prfixed with **$**
-
+Constants declare with **const** are defined at compile time.  
+Constants declare with **define()** are defined at run time.  
+**define()** makes it possible to do:  
+```
+<?php
+if() {
+  define('FOO', 'foo value');
+}
+?>
 ```
 <?php
 class Personnage

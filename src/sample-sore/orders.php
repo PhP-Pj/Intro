@@ -2,6 +2,7 @@
 
 require("db_transaction.php");
 
+// mystery variables
 $db_host = "database_host";
 $db_name = "database_name";
 $db_user = "database_user";
@@ -27,15 +28,19 @@ $products[] = [
   'quantity' => 2
 ];
 
-$transaction = new DBTransaction($db_host, $db_user, $db_password, $db_name);
+//$transaction = new DBTransaction($db_host, $db_user, $db_password, $db_name);
+$transaction = new DBTransaction();
 
-$order_query = "insert into orders (order_id, customer_id, order_date, order_total) values(:order_id, :customer_id, :order_date, :order_total)";
+// $order_query = "insert into orders (order_id, customer_id, order_date, order_total) values(:order_id, :customer_id, :order_date, :order_total)";
+$order_query = "insert into orders ( customer_id, order_date, order_total) values(:customer_id, :order_date, :order_total)";
 $product_query = "insert into orders_products (order_id, product_id, price, quantity) values(:order_id, :product_id, :price, :quantity)";
 
+$transaction->startTransaction();
+
 $transaction->insertQuery($order_query, [
-  'customer_id' => $customer_id,
-  'order_date' => "2020-01-11",
-  'order_total' => 157.8
+  ':customer_id' => $customer_id,
+  ':order_date' => "2020-03-11",
+  ':order_total' => 157.8
 ]);
 
 $order_id = $transaction->last_insert_id;
@@ -52,7 +57,7 @@ foreach ($products as $product) {
 $result = $transaction->submit();
 
 if ($result) {
-    echo "Records successfully submitted";
+    echo "Records successfully submitted\n<br/>";
 } else {
-    echo "There was an error.";
+    echo "There was an error.<br/>";
 }

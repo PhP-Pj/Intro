@@ -12,6 +12,7 @@ class DBTransaction
 
     public function __construct()
     {
+        // Defining some constants at runtime
         define('DB_NAME', 'sample_store');
         define('DB_USER', 'sample_user');
         define('DB_PASSWORD', 'PASSWORD');
@@ -43,8 +44,8 @@ class DBTransaction
         try {
             $this->pdo->commit();
         } catch(PDOException $e) {
+            echo 'Oh shit!: ' . $e;
             $this->pdo->rollBack();
-            echo $e;
             return false;
         }
 
