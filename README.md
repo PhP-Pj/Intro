@@ -1,14 +1,18 @@
 # LNMP Linux Nginx Mysql Php - LAMP Linux Apache Mysql Php
 
+I **stopped using PHP7.3 now I use PHP7.4 everywhere (see debug section below)**
+
 ## Running PhP files in the Web server
 
 PHP files first need be processed in a web server before sending their output to the web browser.  
 
 * Installed a php engine for **NGINX** to execute **PHP**  
+
 * **NGINX** listens to port **80**
   * **introphp** is the "domain name" on nginx for the php examples.
   * http://introphp/static.php
   * **nginx** runs **php 7.3**
+
 * **MYSQL** admin UI **phmypadmin** runs in **APACHE** which listens to port **88**  
   * **apache** runs **php 7.4**
   * http://localhost:88/info.php to check php was properly installed
@@ -27,6 +31,7 @@ Found the entries in https://launchpad.net/~ondrej/+archive/ubuntu/php in sectio
 
 ### Apache
 
+/var/www/html/phpinfo.php
 http://localhost:88/phpinfo.php  
 
 ## MYSQL PHP interface
@@ -94,41 +99,27 @@ You should add "zend_extension=/usr/lib/php/20180731/xdebug.so" to php.ini
 * check install from browser: phpinfor or CLI php7.3 -m. This lists all loaded modules - Xdebug.
 
 ### Fiddling with php
+
+Having php7.3 and php7.4 caused trouble I couldn't make the VSCode debugger run (I believe VSCode run php7.4 but I intalled xdebug for php7.3).  
+So I 
 ```
-$ which php
-/usr/bin/php
-$ ll /usr/bin/ph*
-lrwxrwxrwx 1 root root      22 mars  25 17:42 /usr/bin/phar -> /etc/alternatives/phar*
-lrwxrwxrwx 1 root root      12 mars  20 14:51 /usr/bin/phar7.3 -> phar.phar7.3*
-lrwxrwxrwx 1 root root      12 mars  20 14:47 /usr/bin/phar7.4 -> phar.phar7.4*
-lrwxrwxrwx 1 root root      27 mars  25 17:42 /usr/bin/phar.phar -> /etc/alternatives/phar.phar*
--rwxr-xr-x 1 root root   14814 mars  20 14:51 /usr/bin/phar.phar7.3*
--rwxr-xr-x 1 root root   14885 mars  20 14:47 /usr/bin/phar.phar7.4*
-lrwxrwxrwx 1 root root      21 mars  25 17:42 /usr/bin/php -> /etc/alternatives/php*
--rwxr-xr-x 1 root root 4683512 mars  20 14:51 /usr/bin/php7.3*
--rwxr-xr-x 1 root root 4638488 mars  20 14:47 /usr/bin/php7.4*
-l
-
-$ ll /etc/alternatives/ph*
-lrwxrwxrwx 1 root root 16 mars  27 16:30 /etc/alternatives/phar -> /usr/bin/phar7.4*
-lrwxrwxrwx 1 root root 32 mars  27 16:30 /etc/alternatives/phar.1.gz -> /usr/share/man/man1/phar7.4.1.gz
-lrwxrwxrwx 1 root root 21 mars  27 16:30 /etc/alternatives/phar.phar -> /usr/bin/phar.phar7.4*
-lrwxrwxrwx 1 root root 37 mars  27 16:30 /etc/alternatives/phar.phar.1.gz -> /usr/share/man/man1/phar.phar7.4.1.gz
-lrwxrwxrwx 1 root root 15 mars  27 16:30 /etc/alternatives/php -> /usr/bin/php7.4*
-lrwxrwxrwx 1 root root 31 mars  27 16:30 /etc/alternatives/php.1.gz -> /usr/share/man/man1/php7.4.1.gz
-lrwxrwxrwx 1 root root 22 mars  31 12:04 /etc/alternatives/php-config -> /usr/bin/php-config7.4*
-lrwxrwxrwx 1 root root 38 mars  31 12:04 /etc/alternatives/php-config.1.gz -> /usr/share/man/man1/php-config7.4.1.gz
-lrwxrwxrwx 1 root root 24 mars  31 12:12 /etc/alternatives/php-fpm.sock -> /run/php/php7.4-fpm.sock=
-lrwxrwxrwx 1 root root 18 mars  31 12:04 /etc/alternatives/phpize -> /usr/bin/phpize7.4*
-lrwxrwxrwx 1 root root 34 mars  31 12:04 /etc/alternatives/phpize.1.gz -> /usr/share/man/man1/phpize7.4.1.gz
-
-$  cd /etc/alternatives/
-$ sudo rm php
-$ sudo ln -s /usr/bin/php7.3 php
-
-
+sudo pecl uninstall xdebug
+sudo pecl install xdebug
 ```
 
+To run /var/www/introphp in php7.4 I changed in /etc/nginx/sites-available the entry:** location ~ \.php$**  
+```
+from
+  location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+  }
+to
+  location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+  }
+```
 
 ## Refs:
 https://www.ostechnix.com/install-apache-mysql-php-lamp-stack-on-ubuntu-18-04-lts/

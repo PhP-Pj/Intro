@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    //
+    // PJMD
+    // Not sure how I made this launch.json appear :(
+    // I added to the config "Listen for XDebug": "program": "/.../order.php"
+    // to the file otherwise nothing would happen.
+    // If I remove the entire section "Launch currently open script" takes over.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for XDebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9000,
+            "program": "/home/pjmd/PhpWorkspace/Intro/src/sample-sore/orders.php"
+        },
+        {
+            "name": "Launch currently open script",
+            "type": "php",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${fileDirname}",
+            "port": 9000
+        }
+    ]
+}
