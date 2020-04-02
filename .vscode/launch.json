@@ -14,8 +14,7 @@
             "name": "Listen for XDebug",
             "type": "php",
             "request": "launch",
-            "port": 9000,
-            "program": "/home/pjmd/PhpWorkspace/Intro/src/sample-sore/orders.php"
+            "port": 9000
         },
         {
             "name": "Launch currently open script",

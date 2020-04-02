@@ -19,4 +19,8 @@ $perso = new Personnage([
 $db = new PDO('mysql:host=localhost;dbname=personnageDB', 'personnageDBUser', 'personnage_pwd');
 $manager = new PersonnagesManager($db);
     
+echo "number of characters " . $manager->count();
 $manager->add($perso);
+
+?>
+

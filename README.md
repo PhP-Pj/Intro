@@ -34,6 +34,20 @@ Found the entries in https://launchpad.net/~ondrej/+archive/ubuntu/php in sectio
 /var/www/html/phpinfo.php
 http://localhost:88/phpinfo.php  
 
+#### Adding the introphp web site to apache2
+I already had installed introphp fo nginx and created a folder **/var/www/introphp**.
+So I:  
+
+```
+$ sudo cp 000-default.conf introphp.conf
+$ sudo vi introphp.conf
+        ServerName introphp
+        DocumentRoot /var/www/introphp
+$ a2ensite introphp.conf
+$ sudo systemctl reload apache2
+```
+Job's done.
+
 ## MYSQL PHP interface
 
 The two extesion/Api recommended are:
@@ -70,7 +84,7 @@ php -r "unlink('composer-setup.php');"
 
 ## Debugger
 
-### Debugging in web browser
+### Debugging in web browser - console
 debbuging: https://www.php.net/manual/en/debugger.php  
 
 **PHP Debug Bar**
@@ -96,7 +110,19 @@ You should add "zend_extension=/usr/lib/php/20180731/xdebug.so" to php.ini
 * Added /usr/lib/php/20180731/xdebug.so to /etc/php/7.3/fpm/php.ini 
 * Added [XDebug] entry.
 * sudo service php7.3-fpm restart
-* check install from browser: phpinfor or CLI php7.3 -m. This lists all loaded modules - Xdebug.
+* check install from browser: phpinfor or CLI php7.3 -m. This lists all loaded modules - Xdebug.  
+
+To debug the php code without triggering it via the browser, just select "Launch currently open script" from the config (see top left corner of php)  
+
+#### Note
+I decide to run everything in Apache2 to make my life easier PHP, Phpmyadimn, Xdebug, introphp
+
+#### Apache
+
+Because I had Xdebug installed for Apache2 I decided to add the **introphp** website to Apache.  
+Now to debug the website I just need to select from lunch.json the **"Listen For Xdebug"** configuration and run the site: **http://introphp:88/src/mooc/db_hydratation/webapp.php**. VScode will to to any breakpoint set in webapp.php.
+
+Aslo see https://www.geeksforgeeks.org/how-to-debug-php-scripts/
 
 ### Fiddling with php
 

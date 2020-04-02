@@ -40,14 +40,14 @@ class PersonnagesManager
 
   public function delete(Personnage $perso)
   {
-    $this->_db->exec('DELETE FROM personnages WHERE id = '.$perso->id());
+    $this->_db->exec('DELETE FROM personnage WHERE id = '.$perso->id());
   }
 
   public function get($id)
   {
     $id = (int) $id;
 
-    $q = $this->_db->query('SELECT id, nom, forcePerso, degats, niveau, experience FROM personnages WHERE id = '.$id);
+    $q = $this->_db->query('SELECT id, nom, forcePerso, degats, niveau, experience FROM personnage WHERE id = '.$id);
     $donnees = $q->fetch(PDO::FETCH_ASSOC);
 
     return new Personnage($donnees);
@@ -57,7 +57,7 @@ class PersonnagesManager
   {
     $persos = [];
 
-    $q = $this->_db->query('SELECT id, nom, forcePerso, degats, niveau, experience FROM personnages ORDER BY nom');
+    $q = $this->_db->query('SELECT id, nom, forcePerso, degats, niveau, experience FROM personnage ORDER BY nom');
 
     while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
     {
@@ -69,7 +69,7 @@ class PersonnagesManager
 
   public function update(Personnage $perso)
   {
-    $q = $this->_db->prepare('UPDATE personnages SET forcePerso = :forcePerso, degats = :degats, niveau = :niveau, experience = :experience WHERE id = :id');
+    $q = $this->_db->prepare('UPDATE personnage SET forcePerso = :forcePerso, degats = :degats, niveau = :niveau, experience = :experience WHERE id = :id');
 
     $q->bindValue(':forcePerso', $perso->forcePerso(), PDO::PARAM_INT);
     $q->bindValue(':degats', $perso->degats(), PDO::PARAM_INT);
@@ -78,6 +78,13 @@ class PersonnagesManager
     $q->bindValue(':id', $perso->id(), PDO::PARAM_INT);
 
     $q->execute();
+  }
+
+  public function count() {
+    $q = $this->_db->query('SELECT COUNT(*) as count from  personnage');
+    $q->execute();
+    $count = $q->fetch(PDO::FETCH_ASSOC);
+    return $count['count'];
   }
 
   public function setDb(PDO $db)
