@@ -1,6 +1,6 @@
 # LNMP Linux Nginx Mysql Php - LAMP Linux Apache Mysql Php
 
-[Php tutorial](My Tutorial)
+[Php tutorial](#My Tutorial)
 
 I **stopped using PHP7.3 now I use PHP7.4 everywhere (see debug section below)**
 
@@ -170,7 +170,7 @@ debugger http://phpdebugbar.com/
 * [Exceptions](https://github.com/PhP-Pj/Intro/blob/master/src/mooc/Exceptions/README.md)
 * [Traits](https://github.com/PhP-Pj/Intro/blob/master/src/mooc/Traits/README.md)
 * [Introspection](https://github.com/PhP-Pj/Intro/blob/master/src/mooc/Introspection/README.md)
-* [Design Pattern](https://github.com/PhP-Pj/Intro/blob/master/src/mooc/design%20-Patterns/README.md)
+* [Design Pattern](https://github.com/PhP-Pj/Intro/blob/master/src/mooc/design%20Patterns/README.md)
 * [Generators](https://github.com/PhP-Pj/Intro/blob/master/src/mooc/Generators/README.md)
 * [Closures](https://github.com/PhP-Pj/Intro/blob/master/src/mooc/closures/README.md)
 * [Front End]()
