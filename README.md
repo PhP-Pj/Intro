@@ -157,7 +157,7 @@ debugger http://phpdebugbar.com/
 
 
 
-## My Tutorial
+## Tutorial
 
 ### TOC
 
