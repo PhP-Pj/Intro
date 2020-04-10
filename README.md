@@ -156,7 +156,7 @@ Composer https://getcomposer.org/doc/00-intro.md
 debugger http://phpdebugbar.com/
 
 
-stuff
+## stuff
 ## My Tutorial
 
 ### TOC
