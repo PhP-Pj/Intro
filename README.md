@@ -1,6 +1,6 @@
 # LNMP Linux Nginx Mysql Php - LAMP Linux Apache Mysql Php
 
-[stuff](Tutorial)
+[stuff](#Tutorial)
 
 I **stopped using PHP7.3 now I use PHP7.4 everywhere (see debug section below)**
 
