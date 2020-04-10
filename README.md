@@ -1,6 +1,6 @@
 # LNMP Linux Nginx Mysql Php - LAMP Linux Apache Mysql Php
 
-[Php tutorial][My%20Tutorial]
+[Php tutorial](stuff)
 
 I **stopped using PHP7.3 now I use PHP7.4 everywhere (see debug section below)**
 
@@ -156,7 +156,7 @@ Composer https://getcomposer.org/doc/00-intro.md
 debugger http://phpdebugbar.com/
 
 
-
+stuff
 ## My Tutorial
 
 ### TOC
